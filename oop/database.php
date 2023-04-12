@@ -1,5 +1,8 @@
 <?php
-class database
+namespace Test\Blog; 
+session_start();
+use mysqli;
+class Database
 {
 
     protected $connection;
@@ -9,8 +12,12 @@ class database
         if ($this->connection->connect_error) {
             die('kết nối thất bại' . $this->connection->connect_error);
         }
-        return $this->connection;
     }
+
+    public function connect() {
+		return $this->connection;
+	}
+
     public function close() {
 		return $this->connection->close();
 	}

@@ -1,34 +1,31 @@
 <?php
-session_start();
+require_once '../vendor/autoload.php';
+use Test\Blog\Users;
+
 // login
-require_once 'connsql.php';
-require_once 'usersql.php';
-if (!empty($_POST['username']) && !empty($_POST['password'])) {   
+if (isset($_POST['username']) && isset($_POST['password'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
-    $conn = connection();
-    $sql = "select * from user where username = '$username' and password = '$password'";
-    $result = $conn->query($sql);
-    if ($result->num_rows > 0) {
-        $_SESSION['username'] = $username;
-    } else {
+    $user = new Users();
+    $result = $user->login($username, $password);
+    if (!$result) {
         $_SESSION['messenger'] = 'Tài khoản hoặc mật khẩu không đúng';
-        disconnect($conn);
     }
-    } else {
+} else {
     $_SESSION['messenger'] = 'Chưa nhập tài khoản hoặc mật khẩu';
-    }
+}
+
 //changepw
 if (isset($_POST['changepw'])) {
     $username = $_SESSION['username'];
-    $oldpassword = $_POST['oldpassword'];
+    $password = $_POST['password'];
     $newpassword1 = $_POST['newpassword1'];
     $newpassword2 = $_POST['newpassword2'];
-    $checkuser = getUserByUserName($username, $oldpassword);
-
+    $user = new Users();
+    $checkuser = $user->getUserByUserName($username, $password);
     if ($checkuser) {
         if ($newpassword1 == $newpassword2) {
-            changepw($username, $newpassword1);
+            $user->changepw($username, $newpassword1);
         } else {
             $_SESSION['messenger'] = 'password mới không trùng nhau';
         }
@@ -38,22 +35,26 @@ if (isset($_POST['changepw'])) {
     }
 }
 //register
-if (!empty($_POST['register'])) {
+if (isset($_POST['register'])) {
     $newusername = $_POST['newusername'];
     $newpassword1 = $_POST['newpassword1'];
     $newpassword2 = $_POST['newpassword2'];
-    $checkExistUser = getEistUser($newusername);
+    $user = new Users();
+    $checkExistUser = $user->getEistUser($newusername);
     if ($checkExistUser) {
         $_SESSION['messenger'] = 'tên đăng nhập đã tồn tại';
-        die;
+        
+
     } else {
         if ($newpassword1 !== $newpassword2) {
             $_SESSION['messenger'] = 'Mật khẩu không trùng nhau';
-            die;
         } else {
-            adduser($newusername, $newpassword1);
+            $user->adduser($newusername, $newpassword1);
         }
     }
 }
-// Trở về trang trước
-header("Location: author.php");
+// header('Location: ' . $_SERVER['HTTP_REFERER']);
+header("Location: http://localhost/learn/learning/test_blog/author.php");
+// header("Location: http://localhost/learn/learning/test_blog");
+// $page = 'author.php';
+

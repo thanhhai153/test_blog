@@ -1,0 +1,10 @@
+{
+    "name": "test/blog",
+    "description": "test_blog",
+    "autoload": {
+        "psr-4": {
+            "Test\\Blog\\": "oop/"
+        }
+    },
+    "require": {}
+}
