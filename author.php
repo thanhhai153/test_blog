@@ -11,7 +11,10 @@ include_once './components/meta.php';
     include_once './components/header.php';
     ?>
 
-    <!-- Main Content-->
+
+
+    <!-- login form -->
+
     <?php
     if (empty($_SESSION['username'])) {
     ?>
@@ -78,7 +81,37 @@ include_once './components/meta.php';
     }
 
     ?>
+    <!-- Main Content-->
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <?php
+                require_once './vendor/autoload.php';
 
+                use Test\Blog\Blogs;
+
+                $blog = new Blogs();
+                $posts = $blog->getPosts();
+                // var_dump($posts); exit;
+                foreach ($posts as $post) {
+
+                    $id = $post['id'];
+                    $title = $post['title'];
+                    $posts = $post['posts'];
+
+
+                ?>
+                    <h2 class="section-heading"><?= $title ?></h2>
+                    <p><?= $posts ?></p>
+
+                <?php
+
+                }
+                ?>
+
+            </div>
+        </div>
+    </div>
     <?php
     include_once './components/footer.php';
     include_once './components/script.php';

@@ -32,8 +32,6 @@ include_once './components/meta.php';
 
                 <form  action="actions\addposts.php" method="post">
                     <h3>Update bài viết</h3>
-                    id bài viết 
-                    <input type="text" name="id"class="form-control" class="form-control"> <br>
                     <div class="form-outline mb-4">
                         <h3>Tiêu đề</h3>
                         <input type="text" name="title" placeholder="title" class="form-control">
@@ -48,9 +46,9 @@ include_once './components/meta.php';
 
                 <form action="actions\addposts.php" method="post">
                     <h3>Xóa sản bài viết</h3>
-                    id bài viết<br>
+                    <h3>Bài viết</h3>
                     
-                    <input type="text" name="id" class="form-control" class="form-control"> <br>
+                    <input type="text" name="title" placeholder="title" class="form-control">
                     <input type="submit" name="delposts" value="Xóa bài viết" >
                 </form>
                 <button onclick="document.location='index.php'">Trở về trang chủ</button>

@@ -1,6 +1,6 @@
 <?php
 namespace Test\Blog; 
-session_start();
+// session_start();
 use mysqli;
 class Database
 {
