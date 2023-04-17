@@ -9,14 +9,32 @@ include_once './components/meta.php';
 <body>
     <!-- Navigation + Page Header-->
     <?php
+    require_once 'vendor/autoload.php';
     include_once './components/header.php';
-
     ?>
+
+     <!-- message -->
+     <?php
+    if ($messenger) {
+    ?>
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <div class="alert alert-danger" role="alert">
+                        <?= $messenger ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php
+    }
+    ?>
+
     <!-- Main Content-->
     <div class="container px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">
             <div class="col-md-10 col-lg-8 col-xl-7">
-                <form action="./actions/login.php" method="post">
+                <form action="./actions/updatepw.php" method="post">
                     <!-- Old Password input -->
                     <div class="form-outline mb-4">
                         <input type="password" name="password" class="form-control" />

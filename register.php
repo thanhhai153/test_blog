@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
-$title = 'Login';
+$title = 'Register';
 include_once './components/meta.php';
 ?>
 
@@ -9,9 +9,28 @@ include_once './components/meta.php';
     <!-- Navigation + Page Header-->
 
     <?php
+    require_once 'vendor/autoload.php';
     include_once './components/header.php';
-
     ?>
+    <!-- message -->
+    <?php
+    if ($messenger) {
+    ?>
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <div class="alert alert-danger" role="alert">
+                        <?= $messenger ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php
+    }
+    ?>
+
+
+
     <!-- Main Content-->
     <?php
 
@@ -20,7 +39,7 @@ include_once './components/meta.php';
         <div class="container px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5 justify-content-center">
                 <div class="col-md-10 col-lg-8 col-xl-7">
-                    <form action="./actions/login.php" method="post">
+                    <form action="./actions/signin.php" method="post">
                         <!-- Email input -->
                         <div class="form-outline mb-4">
                             <input type="text" id="form2Example1" name="newusername" class="form-control" />

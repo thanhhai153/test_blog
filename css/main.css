@@ -43,9 +43,6 @@
   top: -20px;
 } */
 
-.header__navbar-user-item{
-
-}
 .header__navbar-user-item button{
   font-size: 0.75rem;
   color: #333;
@@ -73,3 +70,14 @@
   border-top: 1px solid rgba(0, 0, 0, 0.05);
 
 }
+
+.post-content{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+}
+
+/* style="overflow: hidden; text-overflow: ellipsis; -webkit-line-clamp: 3; -webkit-box-orient: vertical; display: -webkit-box" */

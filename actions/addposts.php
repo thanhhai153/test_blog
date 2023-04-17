@@ -2,6 +2,7 @@
 session_start();
 require_once '../vendor/autoload.php';
 
+
 use Test\Blog\Blogs;
 
 if (isset($_POST['addposts'])) {
@@ -23,4 +24,4 @@ if (isset($_POST['delposts'])) {
     $blog = new Blogs();
     $blog->delPost($title);
 }
-header("Location: http://localhost/learn/learning/test_blog/author.php");
+header("Location: http://localhost/learn/learning/test_blog/index.php");

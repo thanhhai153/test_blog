@@ -31,7 +31,8 @@ class Users
         $result = $this->connection->connect()->query($sql);
         if ($result->num_rows > 0) {
             $_SESSION['username'] = $username;
-            $this->connection->close();
+            $_SESSION['messenger'] = 'Xin chào '.$username ;
+            $this->connection->close(); 
             return true;
         }
         $this->connection->close();
@@ -41,7 +42,7 @@ class Users
     {
         $sql = "insert into user (username, password) values ('$newusername','$newpassword1')";
         if ($this->connection->connect()->query($sql)) {
-            $_SESSION['messenger'] = "Tạo tài khoản: $newusername thành công";
+           $_SESSION['messenger'] = "Tạo tài khoản: $newusername thành công";
             header("Location: http://localhost/learn/learning/test_blog/author.php");
             $this->connection->close();
             return;
@@ -52,11 +53,11 @@ class Users
         // session_start();
         $sql = "update user set password ='$newpassword1' where username ='$username'";
         if ($this->connection->connect()->query($sql)) {
-            $_SESSION['messenger'] = "Đổi password thành công";
+           $_SESSION['messenger'] = "Đổi password thành công";
             $this->connection->close();
             return true;
         }
-        $_SESSION['messenger'] = 'có lỗi, vui lòng kiểm tra lại';
+       $_SESSION['messenger'] = 'có lỗi, vui lòng kiểm tra lại';
         return;
     }
 

@@ -8,9 +8,25 @@ include_once './components/meta.php';
 <body>
     <!-- Navigation + Page Header-->
     <?php
+    require_once 'vendor/autoload.php';
     include_once './components/header.php';
     ?>
-
+    <!-- message -->
+    <?php
+    if ($messenger) {
+    ?>
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <div class="alert alert-danger" role="alert">
+                        <?= $messenger ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php
+    }
+    ?>
 
 
     <!-- login form -->
@@ -82,7 +98,7 @@ include_once './components/meta.php';
 
     ?>
     <!-- Main Content-->
-    <div class="container px-4 px-lg-5">
+    <!-- <div class="container px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">
             <div class="col-md-10 col-lg-8 col-xl-7">
                 <?php
@@ -111,7 +127,7 @@ include_once './components/meta.php';
 
             </div>
         </div>
-    </div>
+    </div> -->
     <?php
     include_once './components/footer.php';
     include_once './components/script.php';

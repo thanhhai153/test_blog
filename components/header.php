@@ -1,7 +1,8 @@
 <?php
 session_start();
+
 $messenger = '';
-if (isset($_SESSION['messenger'])) {
+if (!empty($_SESSION['messenger'])) {
     $messenger = $_SESSION['messenger'];
     unset($_SESSION['messenger']);
 }
@@ -22,30 +23,43 @@ if (isset($_SESSION['messenger'])) {
                 <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="post.php">Sample Post</a></li>
                 <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="contact.php">Contact</a></li>
                 <?php
-                if(isset($_SESSION['username'])){
-                    ?>
-                    
-                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="addblog.php">Manage Blog</a></li>
-    
+                if (isset($_SESSION['username'])) {
+                ?>
+
+                    <li class="nav-item header__navbar-user"><a class="nav-link px-lg-3 py-3 py-lg-4" href="addblog.php">Manage Blog</a>
+                        <ul class="header__navbar-user-menu">
+                            <li class="header__navbar-user-item">
+                                <button onclick="document.location='addblog.php'">Add Blog</button>
+                            </li>
+                            <li class="header__navbar-user-item">
+                                <button onclick="document.location='updateblog.php'">Update Blog</button>
+                            </li>
+                            <li class="header__navbar-user-item">
+                                <button onclick="document.location='deleteblog.php'">Delete Blog</button>
+                            </li>
+
+                        </ul>
+                    </li>
+
                     <li class="nav-item header__navbar-user"><a class="nav-link px-lg-3 py-3 py-lg-4" href="#">
                             <img src="https://www.nwf.org/-/media/NEW-WEBSITE/Shared-Folder/Wildlife/Mammals/mammal_mule-deer-California_Richard-Douse_600x300.ashx" alt="" class="header__navbar-user-img">
                             <?= $_SESSION['username'] ?> </a>
                         <ul class="header__navbar-user-menu">
                             <li class="header__navbar-user-item">
-                                <button onclick="document.location='changepw.php'">Thay đổi mật khẩu</button>
+                                <button onclick="document.location='changepw.php'">Change Password</button>
                             </li>
                             <li class="header__navbar-user-item header__navbar-user-item-separate">
                                 <form action="http://localhost/learn/learning/test_blog/actions/logout.php" method="post">
-                                    <button type="submit">Đăng xuất</button>
+                                    <button type="submit">Log Out</button>
                                 </form>
                             </li>
-    
+
                         </ul>
                     </li>
                 <?php
                 } else {
-                    ?>
-                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="author.php">Login</a></li>
+                ?>
+                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="author.php">Log In/Register</a></li>
                 <?php
                 }
                 ?>

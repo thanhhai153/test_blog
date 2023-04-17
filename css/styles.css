@@ -6634,8 +6634,8 @@ textarea.form-control-lg {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-}
 
+}
 .vr {
   display: inline-block;
   align-self: stretch;

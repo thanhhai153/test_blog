@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
-$title = 'Home';
+$title = 'About';
 include_once './components/meta.php';
 ?>
 

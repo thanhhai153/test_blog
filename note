@@ -1,0 +1,4 @@
+tách từng action ra -> ok
+kiểm tra các trường nhập vào. validate login, register...ok
+mã hóa lại password-> ok
+addblog tích hợp editor( ckeditor, tinymce) ->ok

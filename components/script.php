@@ -3,7 +3,4 @@
     <!-- Core theme JS-->
     <script src="js/scripts.js"></script>
     <script>
-        function message() {
-            alert("$messager");
-        }
     </script>

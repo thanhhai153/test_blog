@@ -8,78 +8,74 @@ include_once './components/meta.php';
 <body>
     <!-- Navigation + Page Header-->
     <?php
-    include_once './components/header.php'; 
+    require_once 'vendor/autoload.php';
+    include_once './components/header.php';
     ?>
-    
+
+    <!-- message -->
+    <?php
+    if ($messenger) {
+    ?>
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <div class="alert alert-primary" role="alert">
+                        <?= $messenger ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php
+    }
+    ?>
+
     <!-- Main Content-->
     <div class="container px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">
             <div class="col-md-10 col-lg-8 col-xl-7">
                 <!-- Post preview-->
-                <div class="post-preview">
-                    <a href="post.html">
-                        <h2 class="post-title">Man must explore, and this is exploration at its greatest</h2>
-                        <h3 class="post-subtitle">Problems look mighty small from 150 miles up</h3>
-                    </a>
-                    <p class="post-meta">
-                        Posted by
-                        <a href="#!">Start Bootstrap</a>
-                        on September 24, 2023
-                    </p>
-                </div>
                 <!-- Divider-->
-                <hr class="my-4" />
-                <!-- Post preview-->
                 <div class="post-preview">
-                    <a href="post.html">
-                        <h2 class="post-title">I believe every human has a finite number of heartbeats. I don't intend to waste any of mine.</h2>
-                    </a>
-                    <p class="post-meta">
-                        Posted by
-                        <a href="#!">Start Bootstrap</a>
-                        on September 18, 2023
-                    </p>
+                    <?php
+                    require_once './vendor/autoload.php';
+
+                    use Test\Blog\Blogs;
+
+                    $blog = new Blogs();
+                    $posts = $blog->getPosts();
+                    // var_dump($posts); exit;
+                    foreach ($posts as $post) {
+
+                        $id = $post['id'];
+                        $title = $post['title'];
+                        $posts = $post['posts'];
+
+
+                    ?>
+                        <a href="post.php">
+                            <h3 class="post-title"><?= $title ?></h3>
+                            <p id="post-content"><?= $posts ?></p>
+
+                            <p class="post-meta">
+                                Posted by
+                                <a href="#!">Ahihi</a>
+                                on September 24, 2023
+                            </p>
+                        </a>
+                    <?php
+
+                    }
+                    ?>
+                    <!-- Pager-->
+                    <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="#!=">Older Posts →</a></div>
                 </div>
-                <!-- Divider-->
-                <hr class="my-4" />
-                <!-- Post preview-->
-                <div class="post-preview">
-                    <a href="post.html">
-                        <h2 class="post-title">Science has not yet mastered prophecy</h2>
-                        <h3 class="post-subtitle">We predict too much for the next year and yet far too little for the next ten.</h3>
-                    </a>
-                    <p class="post-meta">
-                        Posted by
-                        <a href="#!">Start Bootstrap</a>
-                        on August 24, 2023
-                    </p>
-                </div>
-                <!-- Divider-->
-                <hr class="my-4" />
-                <!-- Post preview-->
-                <div class="post-preview">
-                    <a href="post.html">
-                        <h2 class="post-title">Failure is not an option</h2>
-                        <h3 class="post-subtitle">Many say exploration is part of our destiny, but it’s actually our duty to future generations.</h3>
-                    </a>
-                    <p class="post-meta">
-                        Posted by
-                        <a href="#!">Start Bootstrap</a>
-                        on July 8, 2023
-                    </p>
-                </div>
-                <!-- Divider-->
-                <hr class="my-4" />
-                <!-- Pager-->
-                <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="#!">Older Posts →</a></div>
             </div>
         </div>
-    </div>
-    <!-- Footer-->
-    <?php
-    include_once './components/footer.php';
-    include_once './components/script.php';
-    ?>
+        <!-- Footer-->
+        <?php
+        include_once './components/footer.php';
+        include_once './components/script.php';
+        ?>
 
 
 
